@@ -42,34 +42,34 @@ function App() {
     <>
       <Header />
       <div className="container-fluid pb-5">
-        <form onSubmit={getSearch} >
-          <div className="d-flex flex-column align-items-center">
-            <img src={require("./books.jpg")} className="my-3" alt="books" width="450" />
-            <div id="searchBox" class="my-4 w-50 mb-5 input-group">
+        <div className="d-flex flex-column align-items-center">
+          <form onSubmit={getSearch} >
+            <img id="booksImage" src={require("./books.jpg")} className="my-3" alt="books" width="450" />
+            <div id="searchBox" class="my-4 mb-5 input-group">
               <input className="form-control" type="text" placeholder="Search..." onChange={(e) => { setSearchWord(e.target.value); }} />
               <button type="submit" className="btn btn-outline-danger input-group-text">
                 <FaSearch size="20px" />
               </button>
             </div>
+          </form>
+          <div className="displayBox">
+            {data && (
+              <>
+                <h2>
+                  {data.word}{" "}
+                  <button type="button" onClick={() => { playAudio(); }}>
+                    <FcSpeaker size="26px" />
+                  </button>
+                </h2>
+                <h4>Parts of speech:</h4>
+                <p>{data.meanings[0].partOfSpeech}</p>
+                <h4>Definition:</h4>
+                <p>{data.meanings[0].definitions[0].definition}</p>
+                <h4>Example:</h4>
+                <p>{data.meanings[0].definitions[0].example}</p>
+              </>
+            )}
           </div>
-        </form>
-        <div className="displayBox">
-          {data && (
-            <>
-              <h2>
-                {data.word}{" "}
-                <button type="button" onClick={() => { playAudio(); }}>
-                  <FcSpeaker size="26px" />
-                </button>
-              </h2>
-              <h4>Parts of speech:</h4>
-              <p>{data.meanings[0].partOfSpeech}</p>
-              <h4>Definition:</h4>
-              <p>{data.meanings[0].definitions[0].definition}</p>
-              <h4>Example:</h4>
-              <p>{data.meanings[0].definitions[0].example}</p>
-            </>
-          )}
         </div>
       </div>
     </>
