@@ -41,7 +41,7 @@ function App() {
   return (
     <>
       <Header />
-      <div className="container-fluid pb-5">
+      <div className="container pb-5">
         <div className="d-flex flex-column align-items-center">
           <form onSubmit={getSearch} >
             <img id="booksImage" src={require("./books.jpg")} className="my-3" alt="books" width="450" />
@@ -65,8 +65,12 @@ function App() {
                 <p>{data.meanings[0].partOfSpeech}</p>
                 <h4>Definition:</h4>
                 <p>{data.meanings[0].definitions[0].definition}</p>
-                <h4>Example:</h4>
-                <p>{data.meanings[0].definitions[0].example}</p>
+                {data.meanings[0].definitions[0].example &&
+                  <>
+                    <h4>Example:</h4>
+                    <p>{data.meanings[0].definitions[0].example}</p>
+                  </>
+                }
               </>
             )}
           </div>
